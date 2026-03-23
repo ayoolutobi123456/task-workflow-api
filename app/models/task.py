@@ -1,5 +1,7 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import DateTime, Column, Integer, String, ForeignKey
+from datetime import datetime
 from app.database import Base
+
 
 class Task(Base):
     __tablename__ = "tasks"
@@ -8,3 +10,6 @@ class Task(Base):
     title = Column(String, index=True)
     description = Column(String)
     status = Column(String)
+    priority = Column(String)
+    due_date = Column(DateTime, nullable=True)
+    owner_id = Column(Integer, ForeignKey("users.id"))
